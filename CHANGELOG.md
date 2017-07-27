@@ -4,8 +4,21 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- ruby 2.4 testing in travis. (@majormoses)
+
+### Fixed
+- PR template spell "Compatibility" correctly (@majormoses)
+
+## [1.2.0] - 2017-06-24
+### Added
+- handler-mailer.rb: add contact routing like Sensu Enterprise works (@stevenviola)
+
+## [1.1.0] - 2017-06-01
 ### Fixed
 - handler-mailer.rb - revert the commit which makes email go to wrong addresses
+- handler-mailer.rb - change `json_config` to `json_config_name` for clarity
+  and add documentation
 
 ## [1.0.0] - 2016-06-23
 ### Fixed
@@ -81,7 +94,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/1.1.0...1.2.0
+[1.1.0]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/0.3.1...1.0.0
 [0.3.1]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/0.2.0...0.3.0
@@ -93,4 +108,3 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 [0.1.1]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/0.0.2...0.1.0
 [0.0.2]: https://github.com/sensu-plugins/sensu-plugins-mailer/compare/0.0.1...0.0.2
-
