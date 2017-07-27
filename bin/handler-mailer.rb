@@ -149,7 +149,8 @@ class Mailer < Sensu::Handler
                  <<-BODY.gsub(/^\s+/, '')
         <%= output %>
         Sensu Dashboard: <%= dashboard_url %>
-        Host: <%= @event['client']['name'] %>
+        Server Host: <%= settings['client']['name'] %>
+        Event Host: <%= @event['client']['name'] %>
         Timestamp: <%= Time.at(@event['check']['issued']) %>
         Address:  <%= @event['client']['address'] %>
         Check Name:  <%= @event['check']['name'] %>
