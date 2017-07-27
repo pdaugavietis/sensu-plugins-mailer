@@ -172,14 +172,14 @@ class Mailer < Sensu::Handler
   end
 
   def build_dashboard_url
-    settings[config[:json_config]]['dashboard_url'] + '/#/client/' +
+    settings[config[:json_config]]['admin_gui'] + '/#/client/' +
       @event['client']['facts']['datacenter'] + '/' +
       @event['client']['name'] + '?check=' + @event['check']['name'] if @event['client']['facts']['datacenter']
   end
 
   def build_body
     json_config = config[:json_config]
-    dashboard_url = build_dashboard_url || settings[config[:json_config]]['dashboard_url'] || 'http://localhost:3000/'
+    dashboard_url = build_dashboard_url || settings[config[:json_config]]['admin_gui'] || 'http://localhost:3000/'
     # try to redact passwords from output and command
     output = (@event['check']['output']).to_s.gsub(/(\s-p|\s-P|\s--password)(\s*\S+)/, '\1 <password omitted>')
     command = (@event['check']['command']).to_s.gsub(/(\s-p|\s-P|\s--password)(\s*\S+)/, '\1 <password omitted>')
