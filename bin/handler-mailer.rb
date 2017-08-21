@@ -145,6 +145,13 @@ class Mailer < Sensu::Handler
         end
       end
     end
+    if json_config_settings.key?('subscriptions') && @event['client']['subscriptions']
+      @event['client']['subscriptions'].each do |sub|
+        if json_config_settings['subscriptions'].key?(sub)
+          mail_to.add(json_config_settings['subscriptions'][sub]['mail_to'].to_s)
+        end
+      end
+    end
     if settings.key?('contacts')
       all_contacts = []
       %w(check client).each do |field|
@@ -172,14 +179,13 @@ class Mailer < Sensu::Handler
   end
 
   def build_dashboard_url
-    settings[config[:json_config]]['admin_gui'] + '/#/client/' +
+    json_config_settings['admin_gui'] + '/#/client/' +
       @event['client']['facts']['datacenter'] + '/' +
       @event['client']['name'] + '?check=' + @event['check']['name'] if @event['client']['facts']['datacenter']
   end
 
   def build_body
-    json_config = config[:json_config]
-    dashboard_url = build_dashboard_url || settings[config[:json_config]]['admin_gui'] || 'http://localhost:3000/'
+    dashboard_url = build_dashboard_url || json_config_settings['admin_gui'] || 'http://localhost:3000/'
     # try to redact passwords from output and command
     output = (@event['check']['output']).to_s.gsub(/(\s-p|\s-P|\s--password)(\s*\S+)/, '\1 <password omitted>')
     command = (@event['check']['command']).to_s.gsub(/(\s-p|\s-P|\s--password)(\s*\S+)/, '\1 <password omitted>')
